@@ -2,27 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 
 import { PokemonModule } from './pokemon/pokemon.module';
-import { DetailComponent } from './detail/detail.component';
-import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { PokemonDetailModule } from './pokemon-detail/pokemon-detail.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DetailComponent,
-    PokemonDetailComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     PokemonModule,
+    PokemonDetailModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
