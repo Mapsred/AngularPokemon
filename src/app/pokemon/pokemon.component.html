@@ -1,18 +1,17 @@
 <md-toolbar color="primary">
   <span>{{title}}</span>
   <span>
-  <button md-icon-button [md-menu-trigger-for]="menu">
-    <md-icon svgSrc="/assets/icons/menu.svg"></md-icon>
-  </button>
+     <button md-button (click)="start.open()"><md-icon svgSrc="/assets/icons/menu.svg"></md-icon></button>
   </span>
-
-  <md-menu #menu="mdMenu">
-    <button md-menu-item>Liste des pokémons</button>
-    <button md-menu-item>Ma collection</button>
-  </md-menu>
 </md-toolbar>
 
-<!--{{ pokemons|json }}-->
+<md-sidenav-layout class="my-container">
+  <md-sidenav #start (open)="closeStartButton.focus()">
+    <a href="/">Liste des pokémons</a>
+    <br>
+    <button md-button #closeStartButton (click)="start.close()">Close</button>
+  </md-sidenav>
+</md-sidenav-layout>
 
 <div class="card-div" *ngFor="let pokemon of pokemons?.results">
   <md-card>{{pokemon.name}}

@@ -1,3 +1,25 @@
-<p>
-  pokemon-detail works!
-</p>
+<md-toolbar color="primary">
+  <span>{{title}}</span>
+  <span>
+     <button md-button (click)="start.open()"><md-icon svgSrc="/assets/icons/menu.svg"></md-icon></button>
+  </span>
+</md-toolbar>
+
+<md-sidenav-layout class="my-container">
+  <md-sidenav #start (open)="closeStartButton.focus()">
+    <a href="/">Liste des pokémons</a>
+    <br>
+    <button md-button #closeStartButton (click)="start.close()">Close</button>
+  </md-sidenav>
+</md-sidenav-layout>
+
+<div *ngIf="pokemon">
+  <md-card>
+    <md-card-title-group>
+      <!--<img md-card-sm-image src="path/to/img.png">-->
+      <md-card-title>{{pokemon.name}}</md-card-title>
+      <md-card-subtitle>{{pokemon.forms.name}}</md-card-subtitle>
+    </md-card-title-group>
+  </md-card>
+
+</div>
