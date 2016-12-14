@@ -12,7 +12,7 @@
   </md-menu>
 </md-toolbar>
 
-<!--<div *ngFor="#value of pokemons | values"> </div>-->
+<div *ngFor="let pokemon of pokemons?.results"> {{pokemon?.url}}</div>
 
 
 <md-card>

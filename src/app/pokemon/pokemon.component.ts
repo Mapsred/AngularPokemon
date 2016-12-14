@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AppService} from "../app.service";
+import {Component, OnInit} from '@angular/core';
+import {PokemonService} from "./pokemon.service";
 
 @Component({
   selector: 'app-pokemon',
@@ -7,13 +7,15 @@ import {AppService} from "../app.service";
   styleUrls: ['./pokemon.component.scss']
 })
 export class PokemonComponent implements OnInit {
-  title = 'app works!';
-  private pokemons;
 
-  constructor(protected appService: AppService) {}
+  private pokemons:any = [];
+  private title = "Pokemons"
+  constructor(protected pokemonService: PokemonService) {
+  }
 
   ngOnInit() {
-    this.appService.getPokemons().subscribe(pokemons => this.pokemons = pokemons)
+    this.pokemonService.getPokemons()
+      .subscribe(pokemons => this.pokemons = pokemons);
   }
 
 }
