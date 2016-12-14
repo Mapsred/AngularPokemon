@@ -12,8 +12,15 @@
   </md-menu>
 </md-toolbar>
 
-<div *ngFor="let pokemon of pokemons?.results"> {{pokemon?.url}}</div>
+<!--{{ pokemons|json }}-->
+
+<div class="card-div" *ngFor="let pokemon of pokemons?.results">
+  <md-card>{{pokemon.name}}
+
+    <md-card-actions>
+      <button md-button (click)="clicked($event, pokemon.url)">Voir le détail</button>
+    </md-card-actions>
+  </md-card>
 
 
-<md-card>
-</md-card>
+</div>

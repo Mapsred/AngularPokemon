@@ -9,10 +9,14 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 
 import { PokemonModule } from './pokemon/pokemon.module';
+import { DetailComponent } from './detail/detail.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DetailComponent,
+    PokemonDetailComponent
   ],
   imports: [
     BrowserModule,
