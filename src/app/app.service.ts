@@ -10,6 +10,6 @@ export class AppService {
   constructor(protected http: Http) {}
 
   public getPokemons(): any {
-    return this.http.get('http://pokeapi.com/api/v2/pokemon/i')
+    return this.http.get('http://pokeapi.co/api/v2/pokemon/1')
   }
 }
