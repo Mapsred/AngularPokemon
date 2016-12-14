@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "./pokemon.service";
 import {Pokemon} from "../model/pokemon";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pokemon',
@@ -12,16 +13,13 @@ export class PokemonComponent implements OnInit {
   private pokemons: any = [];
   private title = "Pokemons";
 
-  constructor(protected pokemonService: PokemonService) {
+  constructor(private router: Router, private pokemonService: PokemonService) {
   }
 
   ngOnInit() {
     this.pokemonService.getPokemons().subscribe(pokemons => this.pokemons = pokemons);
   }
 
-  getPokemon(url: string): any {
-    return this.pokemonService.getPokemon(url).subscribe(pokemon => this.pokemons.push(<Pokemon>pokemon));
-  }
 
   getId(url: string) {
     let splited = url.split("/");
@@ -30,7 +28,7 @@ export class PokemonComponent implements OnInit {
   }
 
   clicked(event, url: string) {
-    console.log(this.getId(url));
+    this.router.navigate(['/detail', this.getId(url)]);
   }
 
 }

@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "../pokemon/pokemon.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {Pokemon} from "../model/pokemon";
 
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss']
 })
-export class PokemonDetailComponent implements OnInit {
 
-  constructor(private router: Router, private service: PokemonService) { }
+export class PokemonDetailComponent implements OnInit {
+  private pokemon: Pokemon;
+
+  constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {
+  }
 
   ngOnInit() {
+    this.pokemonService.getPokemon(this.route.snapshot.params['id']).then((pokemon: Pokemon) => this.pokemon = <Pokemon>pokemon);
+
+
   }
 
 }

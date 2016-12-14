@@ -3,14 +3,15 @@ import { Http, Response } from '@angular/http';
 import { Pokemons }        from '../model/pokemons';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/observable/throw'
-import 'rxjs/add/operator/switchMap'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+
+import {Pokemon} from "../model/pokemon";
 
 @Injectable()
 export class PokemonService {
   private pokemonsUrl = 'http://pokeapi.co/api/v2/pokemon';  // URL to web API
-  public pokemons = [];
 
   constructor (private http: Http) {}
 
@@ -18,11 +19,10 @@ export class PokemonService {
     return this.http.get(this.pokemonsUrl).map(response => response.json()).catch(this.handleError);
   }
 
-
-  getPokemon (url: string): any {
-      return this.http.get(url).map(res => res.json()).catch(this.handleError);
+  getPokemon (id: number): Promise<Pokemon> {
+    let url ="http://pokeapi.co/api/v2/pokemon/"+id;
+    return this.http.get(url).toPromise().then(response => response.json() as Pokemon).catch(this.handleError);
   }
-
 
   //noinspection JSMethodCanBeStatic
   private handleError (error: Response | any) {
