@@ -58,3 +58,8 @@ md-toolbar {
   -webkit-flex-wrap : wrap;
   flex-wrap         : wrap;
 }
+
+.active {
+  border : 1px solid #000000;
+  background-color: #F4F4F4;
+}

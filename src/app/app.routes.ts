@@ -4,7 +4,7 @@ import {PokemonCollectionComponent} from "./pokemon-collection/pokemon-collectio
 import { Routes } from "@angular/router"
 
 export const appRoutes: Routes = [
-  { path: '', component: PokemonComponent },
+  { path: 'pokemon', component: PokemonComponent },
   { path: 'detail/:id', component: PokemonDetailComponent },
-  { path: 'pokemon', component: PokemonCollectionComponent}
+  { path: '', component: PokemonCollectionComponent}
 ];
