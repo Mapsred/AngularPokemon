@@ -1,5 +1,19 @@
 export interface Pokemon {
-  forms: {url, name},
-  // abilities: {slot, is_hidden, ability: {url, name}},
-  name: string
+  forms: {
+    url: string,
+    name: string
+  },
+  abilities: {
+    slot: number,
+    is_hidden: boolean,
+    ability: {
+      url: string,
+      name: string
+    }
+  },
+  name: string,
+  sprites: {
+    back_default: string,
+    front_default: string
+  }
 }

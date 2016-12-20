@@ -1,25 +1,30 @@
 <md-toolbar color="primary">
   <span>{{title}}</span>
   <span>
-     <button md-button (click)="start.open()"><md-icon svgSrc="/assets/icons/menu.svg"></md-icon></button>
+     <button md-button (click)="start.toggle()"><md-icon svgSrc="/assets/icons/menu.svg"></md-icon></button>
   </span>
 </md-toolbar>
 
-<md-sidenav-layout class="my-container">
-  <md-sidenav #start (open)="closeStartButton.focus()">
-    <a href="/">Liste des pokémons</a>
-    <br>
-    <button md-button #closeStartButton (click)="start.close()">Close</button>
+<md-sidenav-layout class="sidenav-layout">
+  <md-sidenav #start mode="side">
+    <md-list>
+      <md-nav-list><a md-list-item href="/">Ma Collection</a></md-nav-list>
+      <md-nav-list><a md-list-item href="/">Liste des pokémons</a></md-nav-list>
+    </md-list>
   </md-sidenav>
+
+  <div class="flex-div md-padding layout-wrap" layout="row">
+      <md-card *ngFor="let pokemon of pokemons?.results">
+        <md-card-title-group>
+          <md-card-title>{{pokemon.name}}</md-card-title>
+        </md-card-title-group>
+        <img md-card-avatar src="https://img.pokemondb.net/artwork/{{ pokemon.name }}.jpg" alt="pokemon">
+        <md-card-actions>
+          <button md-button (click)="clicked($event, pokemon.url)">Voir le détail</button>
+        </md-card-actions>
+      </md-card>
+  </div>
+
 </md-sidenav-layout>
 
-<div class="card-div" *ngFor="let pokemon of pokemons?.results">
-  <md-card>{{pokemon.name}}
 
-    <md-card-actions>
-      <button md-button (click)="clicked($event, pokemon.url)">Voir le détail</button>
-    </md-card-actions>
-  </md-card>
-
-
-</div>

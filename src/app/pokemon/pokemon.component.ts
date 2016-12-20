@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {PokemonService} from "./pokemon.service";
 import {Pokemon} from "../model/pokemon";
 import {Router} from "@angular/router";
@@ -30,5 +30,16 @@ export class PokemonComponent implements OnInit {
   clicked(event, url: string) {
     this.router.navigate(['/detail', this.getId(url)]);
   }
+}
 
+
+@Pipe({name: 'keys'})
+export class KeysPipe implements PipeTransform {
+  transform(value, args:string[]) : any {
+    let keys = [];
+    for (let key in value) {
+      keys.push({key: key, value: value[key]});
+    }
+    return keys;
+  }
 }
