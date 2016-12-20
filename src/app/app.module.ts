@@ -10,6 +10,7 @@ import { appRoutes } from './app.routes';
 
 import { PokemonModule } from './pokemon/pokemon.module';
 import { PokemonDetailModule } from './pokemon-detail/pokemon-detail.module';
+import { PokemonCollectionModule } from './pokemon-collection/pokemon-collection.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { PokemonDetailModule } from './pokemon-detail/pokemon-detail.module';
     HttpModule,
     PokemonModule,
     PokemonDetailModule,
+    PokemonCollectionModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

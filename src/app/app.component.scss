@@ -32,6 +32,11 @@ html, body, material-app, md-sidenav-container, .my-content {
   height : 100%;
 }
 
+md-toolbar {
+  margin : -8px;
+}
+
+
 .sidenav-layout a {
   color           : #000000;
   text-decoration : none;
