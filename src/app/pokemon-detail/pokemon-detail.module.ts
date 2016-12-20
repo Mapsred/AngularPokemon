@@ -5,6 +5,7 @@ import { MaterialModule } from '@angular/material';
 import {OVERLAY_PROVIDERS, MdIconRegistry} from "@angular/material";
 import {CommonModule} from "@angular/common";
 
+
 @NgModule({
   declarations: [PokemonDetailComponent],
   imports: [MaterialModule, CommonModule],

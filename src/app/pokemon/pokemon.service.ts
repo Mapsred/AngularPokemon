@@ -8,13 +8,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import {Pokemon} from "../model/pokemon";
+import {LocalStorageService} from "angular-2-local-storage";
 
 @Injectable()
 export class PokemonService {
   private pokemonsUrl = 'http://pokeapi.co/api/v2/pokemon';  // URL to web API
-  private collection= [];
 
-  constructor (private http: Http) {}
+  constructor (private http: Http, public localStorageService: LocalStorageService) {}
 
   getPokemons (): Observable<Pokemons[]> {
     return this.http.get(this.pokemonsUrl).map(response => response.json()).catch(this.handleError);
@@ -40,15 +40,77 @@ export class PokemonService {
     return Observable.throw(errMsg);
   }
 
-  addToCollection(pokemon: Pokemon) {
-    this.collection.push(pokemon);
+  collectionToggle(pokemon: Pokemon) {
+    let collection = this.getCollection();
+    let index = this.getIndex(pokemon);
+
+    if (index == -1) {
+      collection.push(pokemon);
+    }else {
+      collection.splice(index, 1);
+    }
+
+    this.localStorageService.set("collection", collection);
   }
 
-  removeToCollection(pokemon: Pokemon) {
+  getCollection() : any {
+    let collection = this.localStorageService.get("collection");
+    if (!collection) {
+      return []
+    }
 
+    return collection;
   }
 
-  getCollection() {
-    return this.collection;
+  getIndex(pokemon: Pokemon) {
+    let collection = this.getCollection();
+    let index = -1;
+    for(let i = 0; i < collection.length; i++) {
+      if (collection[i].id === pokemon.id) {
+        index = i;
+        break;
+      }
+    }
+
+    return index;
   }
+
+  getPokemonAbilities(pokemon: Pokemon) {
+    let abilities = [];
+
+    for(let ability of pokemon.abilities)  {
+      abilities.push(ability.ability.name);
+    }
+
+    return abilities.join(", ");
+  }
+
+  getPokemonStats(pokemon: Pokemon) {
+    let stats = [];
+
+    for(let stat of pokemon.stats)  {
+      stats.push(stat.stat.name+ "("+ stat.base_stat +" pts)");
+    }
+
+    return stats.join(", ");
+  }
+
+  getPokemonMoves(pokemon: Pokemon) {
+    let moves = [];
+    for (let move of pokemon.moves) {
+      moves.push(move.move.name);
+    }
+
+    return moves.join(", ");
+  }
+
+  getPokemonTypes(pokemon: Pokemon) {
+    let types = [];
+    for (let type of pokemon.types) {
+      types.push(type.type.name)
+    }
+
+    return types.join(", ");
+  }
+
 }

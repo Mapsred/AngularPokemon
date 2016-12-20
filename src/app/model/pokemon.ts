@@ -44,5 +44,6 @@ export interface Pokemon {
   sprites: {
     back_default: string,
     front_default: string
-  }
+  },
+  id: number
 }

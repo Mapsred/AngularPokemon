@@ -21,13 +21,13 @@
         <md-card-title>{{pokemon.name}}</md-card-title>
       </md-card-title-group>
       <md-card-content>
-        <p>Abilities : {{getAbilities()}}</p>
-        <p>Stats : {{getStats()}}</p>
-        <p>Moves : {{getMoves()}}</p>
-        <p>Types : {{getTypes()}}</p>
+        <p>Abilities : {{pokemonService.getPokemonAbilities(pokemon)}}</p>
+        <p>Stats : {{pokemonService.getPokemonStats(pokemon)}}</p>
+        <p>Moves : {{pokemonService.getPokemonMoves(pokemon)}}</p>
+        <p>Types : {{pokemonService.getPokemonTypes(pokemon)}}</p>
       </md-card-content>
       <md-card-actions>
-        <button md-button (click)="capture()">Capturer</button>
+        <button md-button (click)="capture()">{{pokemonService.getIndex(pokemon) == -1 ? "Capturer" : "Relacher"}}</button>
       </md-card-actions>
     </md-card>
 

@@ -26,6 +26,10 @@ md-sidenav {
   width : 200px;
 }
 
+md-sidenav-layout {
+  margin-top :8px;
+
+}
 html, body, material-app, md-sidenav-container, .my-content {
   margin : 0;
   width  : 100%;
@@ -33,9 +37,8 @@ html, body, material-app, md-sidenav-container, .my-content {
 }
 
 md-toolbar {
-  margin : -8px;
+  margin     : -8px;
 }
-
 
 .sidenav-layout a {
   color           : #000000;
@@ -52,6 +55,6 @@ md-toolbar {
 }
 
 .layout-wrap {
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-flex-wrap : wrap;
+  flex-wrap         : wrap;
 }

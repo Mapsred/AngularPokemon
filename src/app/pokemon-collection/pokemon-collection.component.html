@@ -12,7 +12,17 @@
       <md-nav-list><a md-list-item href="/">Liste des pokémons</a></md-nav-list>
     </md-list>
   </md-sidenav>
-  <p>
-  pokemon-collection works!
-</p>
+
+  <div class="flex-div md-padding layout-wrap" layout="row" *ngIf="collection">
+    <md-card *ngFor="let pokemon of collection">
+      <md-card-title-group>
+        <md-card-title>{{pokemon.name}}</md-card-title>
+      </md-card-title-group>
+      <img md-card-avatar src="https://img.pokemondb.net/artwork/{{ pokemon.name }}.jpg" alt="pokemon">
+      <md-card-actions>
+        <button md-button (click)="clicked($event, pokemon.id)">Voir le détail</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
 </md-sidenav-layout>

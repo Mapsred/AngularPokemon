@@ -19,46 +19,8 @@ export class PokemonDetailComponent implements OnInit {
     this.pokemonService.getPokemon(this.route.snapshot.params['id']).then((pokemon: Pokemon) => this.pokemon = <Pokemon>pokemon);
   }
 
-  getAbilities() {
-    let abilities = [];
-
-    for(let ability of this.pokemon.abilities)  {
-      abilities.push(ability.ability.name);
-    }
-
-    return abilities.join(", ");
-  }
-
-  getStats() {
-    let stats = [];
-
-    for(let stat of this.pokemon.stats)  {
-      stats.push(stat.stat.name+ "("+ stat.base_stat +" pts)");
-    }
-
-    return stats.join(", ");
-  }
-
-  getMoves() {
-    let moves = [];
-    for (let move of this.pokemon.moves) {
-      moves.push(move.move.name);
-    }
-
-    return moves.join(", ");
-  }
-
-  getTypes() {
-    let types = [];
-    for (let type of this.pokemon.types) {
-      types.push(type.type.name)
-    }
-
-    return types.join(", ");
-  }
-
   capture() {
-    console.log(this.pokemon)
+    this.pokemonService.collectionToggle(this.pokemon);
   }
 
 }
