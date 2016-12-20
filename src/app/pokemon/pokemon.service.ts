@@ -12,6 +12,7 @@ import {Pokemon} from "../model/pokemon";
 @Injectable()
 export class PokemonService {
   private pokemonsUrl = 'http://pokeapi.co/api/v2/pokemon';  // URL to web API
+  private collection= [];
 
   constructor (private http: Http) {}
 
@@ -37,5 +38,17 @@ export class PokemonService {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
+  }
+
+  addToCollection(pokemon: Pokemon) {
+    this.collection.push(pokemon);
+  }
+
+  removeToCollection(pokemon: Pokemon) {
+
+  }
+
+  getCollection() {
+    return this.collection;
   }
 }
